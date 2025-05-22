@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Les dingues du PSG</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f0f0f0;
+      margin: 0;
+      transition: background-color 0.5s;
+    }
+
+    h1 {
+      padding: 20px;
+      color: #002654;
+    }
+
+    img {
+      width: 80%;
+      max-width: 300px;
+      margin-top: 10px;
+    }
+
+    .btn {
+      padding: 12px 20px;
+      margin: 10px 5px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      width: 90%;
+      max-width: 300px;
+    }
+
+    .interview { background-color: #0044cc; }
+    .matchs    { background-color: #cc0000; }
+    .joueurs   { background-color: #009933; }
+    .trophees  { background-color: #ff9900; }
+
+    .content {
+      margin-top: 20px;
+      padding: 20px;
+      background-color: white;
+      width: 90%;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    @media (max-width: 600px) {
+      .btn {
+        font-size: 14px;
+        padding: 10px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Bienvenue sur Les dingues du PSG !</h1>
+  <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/6/65/Paris_Saint-Germain_Logo.svg/800px-Paris_Saint-Germain_Logo.svg.png" alt="Logo PSG">
+
+  <div id="intro" class="content">
+    <p>Quel est ton prénom ?</p>
+    <input type="text" id="prenom" placeholder="Ton prénom ici">
+    <p>Es-tu fan du PSG ?</p>
+    <select id="fan">
+      <option value="">-- Choisis une option --</option>
+      <option value="oui">Oui</option>
+      <option value="non">Non</option>
+    </select>
+    <br><br>
+    <button onclick="validerInfos()">Valider</button>
+  </div>
+
+  <div id="zone-boutons" style="display: none;">
+    <button class="btn interview" onclick="afficherInterview()">🎙 Interview de Luis Enrique</button>
+    <button class="btn matchs" onclick="afficherMatchs()">📅 Prochains matchs</button>
+    <button class="btn joueurs" onclick="afficherJoueurs()">👕 Joueurs du PSG</button>
+    <button class="btn trophees" onclick="afficherTrophees()">🏆 Trophées gagnés</button>
+  </div>
+
+  <div class="content" id="zone-contenu" style="display: none;"></div>
+
+  <script>
+    function validerInfos() {
+      const prenom = document.getElementById("prenom").value.trim();
+      const fan = document.getElementById("fan").value;
+
+      if (prenom === "" || fan === "") {
+        alert("Merci de remplir les deux champs.");
+        return;
+      }
+
+      let message = `Salut ${prenom} ! `;
+      message += fan === "oui" 
+        ? "Bienvenue, vrai fan du PSG ! 🔴🔵" 
+        : "Tu n'es pas fan du PSG... mais tu es quand même le bienvenu ! 😊";
+
+      document.getElementById("intro").innerHTML = `<p>${message}</p>`;
+      document.getElementById("zone-boutons").style.display = "block";
+      document.getElementById("zone-contenu").style.display = "block";
+    }
+
+    function afficherInterview() {
+      document.body.style.backgroundColor = "#cce0ff"; // bleu clair
+      document.getElementById("zone-contenu").innerHTML = `
+        <h2>Interview de Luis Enrique</h2>
+        <p>"Nous avons beaucoup progressé cette saison. L’équipe est unie, ambitieuse, et les joueurs donnent tout."</p>
+      `;
+    }
+
+    function afficherMatchs() {
+      document.body.style.backgroundColor = "#ffd6d6"; // rouge clair
+      document.getElementById("zone-contenu").innerHTML = `
+        <h2>Prochains matchs</h2>
+        <ul>
+          <li>PSG vs Marseille - 25 mai</li>
+          <li>PSG vs Lille - 1er juin</li>
+          <li>PSG vs Lyon - 8 juin</li>
+        </ul>
+      `;
+    }
+
+    function afficherJoueurs() {
+      document.body.style.backgroundColor = "#d6ffe0"; // vert clair
+      document.getElementById("zone-contenu").innerHTML = `
+        <h2>Joueurs du PSG</h2>
+        <ul>
+          <li>Kylian Mbappé</li>
+          <li>Ousmane Dembélé</li>
+          <li>Marquinhos</li>
+          <li>Gianluigi Donnarumma</li>
+          <li>Achraf Hakimi</li>
+        </ul>
+      `;
+    }
+
+    function afficherTrophees() {
+      document.body.style.backgroundColor = "#fff2cc"; // jaune clair
+      document.getElementById("zone-contenu").innerHTML = `
+        <h2>Trophées du PSG</h2>
+        <ul>
+          <li>Ligue 1 : 11 fois</li>
+          <li>Coupe de France : 14 fois</li>
+          <li>Coupe de la Ligue : 9 fois</li>
+          <li>Trophée des Champions : 11 fois</li>
+        </ul>
+      `;
+    }
+  </script>
+
+</body>
+</html>
